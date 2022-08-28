@@ -4,7 +4,7 @@ from selenium import webdriver
 
 
 def pytest_addoption(parser):
-    parser.addoption('--language', action='store', default='en',
+    parser.addoption('--language', action='store', default='ru',
                      help="Choose language: ru or en")
 
 
@@ -19,3 +19,9 @@ def browser(request):
         raise pytest.UsageError("--language should be entered and must contain minimum 2 letters")
     yield browser
     browser.quit()
+
+
+@pytest.fixture(scope="function")
+def link():
+    link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer0"
+    return link
